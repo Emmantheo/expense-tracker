@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+
+    <form method="POST" action="/set_budget">
+        <label for="budget">Set Monthly Budget ($):</label>
+        <input type="number" id="budget" name="budget" step="0.01" required>
+        <button type="submit">Set Budget</button>
+    </form>
+
+    <h2>Budget Overview</h2>
+    <p><strong>Budget:</strong> ${{ monthly_budget if monthly_budget > 0 else "Not Set" }}</p>
+    <p><strong>Total Spent:</strong> ${{ total_spent }}</p>
+    <p><strong>Remaining Budget:</strong> ${{ remaining_budget }}</p>
+
+    <h2>Add Expense</h2>
+    <form method="POST" action="/add">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+        
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+
+        <button type="submit">Add Expense</button>
+    </form>
+
+    <h2>Download Monthly Report</h2>
+    <a href="/report"><button>Download PDF Report</button></a>
+
+    <h2>Expense History</h2>
+    <ul>
+        {% for expense in expenses %}
+            <li>
+                {{ expense.date }} - {{ expense.description }}: ${{ expense.amount }} ({{ expense.category }})
+                <a href="{{ url_for('delete_expense', expense_id=expense.id) }}" style="color: red;">❌ Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if not expenses %}
+        <p>No expenses recorded yet.</p>
+    {% endif %}
+</body>
+</html>
