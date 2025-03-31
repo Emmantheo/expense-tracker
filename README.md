@@ -1,115 +1,114 @@
-Expense Tracker
+# Expense Tracker
+
 A simple Flask application that allows users to add, view, and delete expenses, set a monthly budget, and generate a monthly expense report in PDF format.
 
-Table of Contents
-Features
+## Table of Contents
 
-Prerequisites
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Endpoints](#endpoints)
+- [File Structure](#file-structure)
+- [Possible Improvements](#possible-improvements)
+- [License](#license)
 
-Installation
+---
 
-Usage
+## Features
 
-Endpoints
+1. **Add and Delete Expenses**: Users can add new expenses (with date, description, amount, and category) and delete existing ones.
+2. **Monthly Budget**: Users can set a monthly budget. The home page shows total spent and remaining budget for the current month.
+3. **Expense Categorization**: Predefined categories include Food, Transport, Shopping, Bills, Entertainment, and Other.
+4. **PDF Reporting**: A monthly PDF report (for the current month) can be generated, showing a summary of expenses.
 
-File Structure
+---
 
-Possible Improvements
+## Prerequisites
 
-License
+- Python 3.7+ (though any modern version of Python 3 should work)
+- [pip](https://pip.pypa.io/en/stable/) for Python package management
 
-Features
-Add and Delete Expenses: Users can add new expenses (with date, description, amount, and category) and delete existing ones.
+---
 
-Monthly Budget: Users can set a monthly budget. The home page shows total spent and remaining budget for the current month.
+## Installation
 
-Expense Categorization: Predefined categories include Food, Transport, Shopping, Bills, Entertainment, and Other.
+1. **Clone or Download** the repository:
 
-PDF Reporting: A monthly PDF report (for the current month) can be generated, showing a summary of expenses.
+   ```bash
+   git clone https://github.com/username/expense-tracker-flask.git
+   cd expense-tracker-flask
+   ```
+2. **Install Dependencies**
 
-Prerequisites
-Python 3.7+ (though any modern version of Python 3 should work)
+To install all necessary dependencies, run:
 
-pip for Python package management
-
-Installation
-Clone or Download the repository:
-
-bash
-Copy
-Edit
-git clone https://github.com/username/expense-tracker-flask.git
-cd expense-tracker-flask
-Install Dependencies:
-
-bash
-Copy
-Edit
+```bash
 pip install -r requirements.txt
+```
 The primary libraries needed are:
 
-Flask (for the web framework)
+- Flask (for the web framework)
 
-ReportLab (for PDF generation)
+- ReportLab (for PDF generation)
+3. (Optional) Create a Virtual Environment:
 
-(Optional) Create a Virtual Environment:
-
-It’s a good practice to create a virtual environment to avoid version conflicts:
-
-bash
-Copy
-Edit
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-Usage
-Start the Flask Server:
+```
 
-bash
-Copy
-Edit
+## Usage
+1. Start the Flask Server:
+
+```bash
 python app.py
+```
+
 The application will run by default on http://0.0.0.0:5000 (or http://localhost:5000).
 
-Open the App:
+2. Open the App:
 
 In your web browser, navigate to:
 
-arduino
-Copy
-Edit
+```arduino
 http://localhost:5000
+```
+
 You should see the home page with an option to set your monthly budget, view expenses, and add new ones.
 
-Add a New Expense:
+3. Add a New Expense:
 
-Fill out the Description, Amount, Category, and optional Date (defaults to today if empty).
+- Fill out the Description, Amount, Category, and optional Date (defaults to today if empty).
 
-Click Add Expense.
+- Click Add Expense.
 
-You’ll be redirected to the home page with the updated expense list.
+- You’ll be redirected to the home page with the updated expense list.
 
-Delete an Expense:
+4. Delete an Expense:
 
-Click the Delete link next to an expense entry to remove it from the current list.
+- Click the Delete link next to an expense entry to remove it from the current list.
 
-Generate a PDF Report:
+5. Generate a PDF Report:
 
-Click Generate Report (PDF) at the top (or navigate to /report).
+- Click Generate Report (PDF) at the top (or navigate to /report).
 
-A PDF file will be generated for the current month’s expenses and downloaded automatically.
+- A PDF file will be generated for the current month’s expenses and downloaded automatically.
 
-Endpoints
-Endpoint	Method	Description
-/	GET	Displays the home page with the current month’s expenses.
-/set_budget	POST	Sets the monthly budget.
-/add	POST	Adds a new expense (parameters: description, amount, category).
-/delete/<int:id>	GET	Deletes the specified expense.
-/report	GET	Generates and returns a PDF for the current month’s expenses.
-File Structure
-bash
-Copy
-Edit
+  ## Endpoints
+
+| Endpoint              | Method | Description                                                           |
+|-----------------------|--------|-----------------------------------------------------------------------|
+| `/`                   | GET    | Displays the home page with the current month’s expenses.            |
+| `/set_budget`         | POST   | Sets the monthly budget.                                              |
+| `/add`                | POST   | Adds a new expense (parameters: `description`, `amount`, `category`). |
+| `/delete/<int:id>`    | GET    | Deletes the specified expense by ID.                                  |
+| `/report`             | GET    | Generates and returns a PDF for the current month’s expenses.         |
+
+
+## File Structure
+```bash
 .
 ├─ app.py               # Main Flask application
 ├─ templates
@@ -117,16 +116,14 @@ Edit
 ├─ requirements.txt     # Python dependencies
 ├─ README.md            # This README file
 └─ (other files)        # Additional scripts or assets as needed
-Possible Improvements
-Database Integration: Currently expenses are stored in-memory, so they reset on server restart. Integrating a database (e.g., SQLite, PostgreSQL, or MySQL) would provide persistence.
+```
+## Possible Improvements
+- Database Integration: Currently, expenses are stored in-memory, so they reset on server restart. Integrating a database (e.g., SQLite, PostgreSQL, MySQL) would provide persistence.
 
-Authentication: Add user login to make the budget and expenses user-specific.
+- Authentication: Add user login to make the budget and expenses user-specific.
 
-More Reporting Options: Provide weekly/yearly PDF reports or CSV/Excel exports.
+- More Reporting Options: Provide weekly/yearly PDF reports or CSV/Excel exports.
 
-Enhanced UI: Improve the front-end design with a modern UI framework like Bootstrap.
+- Enhanced UI: Improve the front-end design with a modern UI framework like Bootstrap.
 
-Testing: Implement unit tests or integration tests for endpoints.
-
-License
-MIT License
+- Testing: Implement unit tests or integration tests for endpoints.
