@@ -11,7 +11,6 @@ A simple Flask application that allows users to add, view, and delete expenses, 
 - [Endpoints](#endpoints)
 - [File Structure](#file-structure)
 - [Possible Improvements](#possible-improvements)
-- [License](#license)
 
 ---
 
